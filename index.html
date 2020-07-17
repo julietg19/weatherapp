@@ -12,6 +12,8 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
+    <!-- jquery link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <!-- My style sheet -->
     <link rel="stylesheet" href="style.css" />
     <title>Weather Dashboard</title>
@@ -49,6 +51,7 @@
               id="button-addon2"
             >
               <!-- <i class="far fa-search"></i> -->
+              search
             </button>
           </div>
           <!-- End input group -->
@@ -67,11 +70,13 @@
         <div class="col-lg-9">
           <div id="currentCity" class="mt-4">
             <div class="card-body border">
-              <h3 id="pop">populated</h3>
-              <p id="temp"></p>
-              <p id="humid"></p>
-              <p id="wind"></p>
-              <p id="uv"></p>
+              <div id="pop">
+                <h3></h3>
+                <p id="temp"></p>
+                <p id="humid"></p>
+                <p id="wind"></p>
+                <p id="uv"></p>
+              </div>
             </div>
           </div>
         </div>
@@ -91,7 +96,7 @@
     </div>
     <!-- End container -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src=".js"></script>
+    <script src="moment.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
