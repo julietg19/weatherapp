@@ -9,10 +9,10 @@ var cityData = ["Austin", "Houston", "Beaumont"];
 function searchCity(cityName) {
   // Creates set of past search buttons
   $("#recentSearch").empty();
-  var getCity = 
-  for (var i = 0; i < cityData.length; i++) {
+  var getCity = cityData.concat(JSON.parse(localStorage.getItem("cityKey")));
+  for (var i = 0; i < getCity.length; i++) {
     var cityButton = $("<button>")
-      .text(cityData[i])
+      .text(getCity[i])
       .addClass("btn btn-info btn-block pb-2");
 
     // Add code to eliminate duplicates XXXXXXXXXXXXXX
@@ -25,7 +25,7 @@ function searchCity(cityName) {
 
 $("#searchBtn").click(function () {
   var inputVal = $("#searchTerm").val();
-  cityData.push(inputVal);
+  // cityData.push(inputVal);
   //localstorage
 
   localStorage.setItem("cityKey", JSON.stringify(inputVal));
@@ -54,7 +54,7 @@ function apiCall(cityName) {
   }).then(function (response) {
     // Response is in JSON format
     // Get temp, humidity, windspeed and UV index
-
+    console.log(response);
     var humidity = response.list[0].main.humidity;
     var uv = 0;
     var newHtml = `<h3>${cityName} ${moment().format("(M/D/YYYY)")}</h3>
@@ -70,6 +70,26 @@ function apiCall(cityName) {
 
     var windspeed = response.list[0].wind.speed * 2.237;
 
+    // latitude & longitude
+
+    var lat = response.city.coord.lat;
+
+    var lon = response.city.coord.lon;
+
+    // UV Index Function
+
+    function uvIndex(lat, lon) {
+      $.ajax({
+        url: `http://api.openweathermap.org/data/2.5/uvi?appid={${API}}&lat={${lat}}&lon={${lon}}`,
+        method: "GET",
+      }).then(function (response) {
+        console.log(response);
+        return response;
+      });
+    }
+
+    var uvResult = uvIndex(lat, lon);
+    console.log(uvResult);
     //  display output
 
     newHtml += "<p>Temperature: " + tempF.toFixed(0) + "°F" + "</p>\n";
