@@ -80,7 +80,7 @@ function apiCall(cityName) {
 
     function uvIndex(lat, lon) {
       $.ajax({
-        url: `http://api.openweathermap.org/data/2.5/uvi?appid={${API}}&lat={${lat}}&lon={${lon}}`,
+        url: `https://api.openweathermap.org/data/2.5/uvi?appid={${API}}&lat={${lat}}&lon={${lon}}`,
         method: "GET",
       }).then(function (response) {
         console.log(response);
